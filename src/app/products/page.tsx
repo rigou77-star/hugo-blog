@@ -8,18 +8,30 @@ const products = [
 
 export default function ProductsList() {
   return (
-    <div className="container mx-auto px-4 py-12 max-w-6xl">
-      <h1 className="text-4xl font-bold mb-8 text-gray-900 dark:text-white">Store</h1>
+    <div className="container mx-auto px-4 py-12 max-w-6xl font-mono">
+      <div className="mb-8 border-b border-[var(--foreground)] pb-4">
+        <h1 className="text-4xl font-bold uppercase">/dev/store</h1>
+        <p className="opacity-70 mt-2">&gt; Listing available packages...</p>
+      </div>
+
       <div className="grid md:grid-cols-3 gap-8">
         {products.map((product) => (
-          <div key={product.id} className="group border border-gray-100 dark:border-gray-800 rounded-2xl p-6 hover:shadow-lg transition-shadow bg-white dark:bg-gray-900">
-            <div className="aspect-square bg-gray-50 dark:bg-gray-800 rounded-xl mb-6 flex items-center justify-center text-gray-400">
-              Product Image
+          <div key={product.id} className="group border border-[var(--foreground)] p-6 hover:bg-[rgba(0,255,0,0.1)] transition-colors bg-black flex flex-col justify-between h-full">
+            <div className="aspect-square border border-[var(--foreground)] bg-black mb-6 flex flex-col items-center justify-center text-sm p-4 relative overflow-hidden">
+               <div className="absolute top-2 left-2 text-[10px] opacity-70">PKG_ID: {product.id.toString().padStart(4, '0')}</div>
+               <div className="text-center opacity-50 uppercase">[ BINARY_IMAGE_PLACEHOLDER ]</div>
             </div>
-            <h2 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{product.name}</h2>
-            <p className="text-blue-600 font-medium mb-4">{product.price}</p>
-            <button className="w-full py-3 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition-colors">
-              Buy Now
+            
+            <div className="mb-4">
+               <h2 className="text-xl font-bold mb-2 uppercase group-hover:underline">{product.name}</h2>
+               <div className="flex justify-between items-center text-sm font-bold border-t border-[var(--foreground)] pt-2 mt-2">
+                 <span>COST:</span>
+                 <span className="bg-[var(--foreground)] text-black px-1">{product.price}</span>
+               </div>
+            </div>
+
+            <button className="w-full py-2 border border-[var(--foreground)] uppercase text-sm font-bold hover:bg-[var(--foreground)] hover:text-black transition-colors flex items-center justify-center gap-2">
+              <span>[ APT-GET INSTALL ]</span>
             </button>
           </div>
         ))}
